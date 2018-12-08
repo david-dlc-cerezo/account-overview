@@ -20,7 +20,7 @@ import PortfolioSummary from '@/components/PortfolioSummary.vue'
 import TransactionRow from '@/components/TransactionRow.vue'
 import UseHeader from '@/components/UserHeader.vue'
 
-const DATA_SURCE = '/data/data.json'
+const DATA_SOURCE = '/data/data.json'
 
 export default {
   name: 'PortfolioOverview',
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     getTransactions: function getTransactions () {
-      fetch(DATA_SURCE)
+      fetch(DATA_SOURCE)
         .then(response => response.json())
         .then(json => {
           this.portfolio = json.portfolios.results[0]
