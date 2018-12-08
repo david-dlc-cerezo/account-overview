@@ -3,6 +3,9 @@
     <UseHeader
       :user="user"
     ></UseHeader>
+    <PortfolioSummary
+      :portfolio="portfolio"
+    ></PortfolioSummary>
     <TransactionRow
       v-for="(transaction, index)  in transactions"
       :key="index"
@@ -13,6 +16,7 @@
 
 <script>
 
+import PortfolioSummary from '@/components/PortfolioSummary.vue'
 import TransactionRow from '@/components/TransactionRow.vue'
 import UseHeader from '@/components/UserHeader.vue'
 
@@ -21,6 +25,7 @@ const DATA_SURCE = '/data/data.json'
 export default {
   name: 'PortfolioOverview',
   components: {
+    PortfolioSummary,
     TransactionRow,
     UseHeader
   },
@@ -28,7 +33,9 @@ export default {
   },
   data: function () {
     return {
-      transactions: Object
+      portfolio: Object,
+      transactions: Object,
+      user: Object
     }
   },
   methods: {
@@ -36,6 +43,7 @@ export default {
       fetch(DATA_SURCE)
         .then(response => response.json())
         .then(json => {
+          this.portfolio = json.portfolios.results[0]
           this.user = json.user
           this.transactions = json.transfers.results
         })
