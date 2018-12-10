@@ -3,7 +3,7 @@
     <div class="level">
       <div class="level-left">
         <div class="level-item is-half welcome">
-          Welcome back,&nbsp;<span class="welcome__name is-primary">{{user.last_name}}</span>!
+          Welcome back,&nbsp;<span class="welcome__name has-text-primary">{{user.last_name}}</span>!
         </div>
       </div>
       <div class="level-right">

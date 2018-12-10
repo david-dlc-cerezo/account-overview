@@ -39,7 +39,7 @@ button.is-primary,
   background-color: #00a7d0;
 }
 
-span.is-primary {
-  color: #00a7d0;
+.has-text-primary {
+  color: #00a7d0 !important;
 }
 </style>
