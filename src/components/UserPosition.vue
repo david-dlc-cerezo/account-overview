@@ -1,48 +1,49 @@
 <template>
-  <div class="user-position container">
-    <div class="tile is-ancestor">
-      <div class="tile is-horizontal">
-        <article class="tile is-child">
-          <p class="title">Balance</p>
-          <p class="subtitle">
-            {{position.balance | currency(currency.code)}}
-          </p>
-        </article>
-        <article class="tile is-child">
-          <p class="title">Invested</p>
-          <p class="subtitle">
-            {{position.invested | currency(currency.code)}}
-          </p>
-        </article>
-        <article class="tile is-child">
-          <p class="title">Earnings</p>
-          <p class="subtitle">
-            {{position.earnings | currency(currency.code)}}
-          </p>
-        </article>
+  <div class="user-position">
+    <div class="columns">
+      <div class="column">
+        <PositionBox
+          title="Balance"
+          image="/img/image-balance.png"
+          :ammount="position.balance"
+          :currency="currency.code"
+        ></PositionBox>
+      </div>
+      <div class="column">
+        <PositionBox
+          title="Invested"
+          :ammount="position.invested"
+          :currency="currency.code"
+        ></PositionBox>
+      </div>
+      <div class="column">
+        <PositionBox
+          title="Earnings"
+          :ammount="position.earnings"
+          :currency="currency.code"
+        ></PositionBox>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import currency from '@/filters/currency.js'
+import PositionBox from '@/components/PositionBox.vue'
 
 export default {
   name: 'UserPosition',
+  components: {
+    PositionBox
+  },
   props: {
     position: Object,
     currency: Object
-  },
-  filters: {
-    currency
   }
 }
 </script>
 
 <style scoped>
-.tile .title {
-  text-transform: uppercase;
-  font-size: 1em;
-}
+  .user-position {
+    margin-bottom: 4em;
+  }
 </style>
