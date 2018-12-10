@@ -5,11 +5,14 @@
       <UseHeader :user="user"></UseHeader>
       <UserPosition :position="userPosition" :currency="portfolio.currency"></UserPosition>
       <PortfolioSummary :portfolio="portfolio"></PortfolioSummary>
-      <TransactionRow
-        v-for="(transaction, index)  in transactions"
-        :key="index"
-        :transaction="transaction"
-      ></TransactionRow>
+      <div class="transactions">
+        <TransactionRow
+          v-for="(transaction, index)  in transactions"
+          :key="index"
+          :transaction="transaction"
+          :currency="portfolio.currency"
+        ></TransactionRow>
+      </div>
     </div>
   </div>
 </template>
@@ -79,4 +82,7 @@ export default {
 </script>
 
 <style scoped>
+.transactions {
+  margin: 1em 0;
+}
 </style>
