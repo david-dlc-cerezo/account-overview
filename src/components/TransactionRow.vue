@@ -1,11 +1,11 @@
 <template>
-  <div class="transaction-row" @click="openModal">
-    <div class="columns">
+  <div class="transaction-row">
+    <div class="columns" @click="openModal">
       <div class="column is-one-quarter">
         <div class="has-text-primary">
           {{transaction.portfolio.name}}
         </div>
-        {{mappedItem}}
+        {{transaction.item | mapItem}}
       </div>
       <div class="column is-one-quarter">
         {{transaction.created | date }}
@@ -19,24 +19,41 @@
         <span class="tag" :class="statusClass">{{transaction.status | capitalizeFirstLetter}}</span>
       </div>
     </div>
+    <TransactionModal
+      :transaction="transaction"
+      :currency="currency"
+      :isActive="isModalOpen"
+      @close="closeModal"
+    ></TransactionModal>
   </div>
 </template>
 
 <script>
+import TransactionModal from '@/components/TransactionModal.vue'
 import capitalizeFirstLetter from '@/filters/capitalizeFirstLetter.js'
 import currency from '@/filters/currency.js'
 import date from '@/filters/date.js'
+import mapItem from '@/filters/mapItem.js'
 
 export default {
   name: 'TransactionRow',
+  components: {
+    TransactionModal
+  },
   filters: {
     capitalizeFirstLetter,
     currency,
-    date
+    date,
+    mapItem
   },
   props: {
     transaction: Object,
     currency: Object
+  },
+  data: function () {
+    return {
+      isModalOpen: false
+    }
   },
   computed: {
     currencyClass: function() {
@@ -55,26 +72,21 @@ export default {
       } else {
         return ''
       }
-    },
-    mappedItem: function() {
-      const MAP = {
-        AUTODEPOSIT: 'Regular deposit',
-        CHARGE: 'Fee'
-      }
-
-      return MAP[this.transaction.item] || this.transaction.item
     }
   },
   methods: {
     openModal: function() {
-      console.log('Open modal', this.transaction)
+      this.isModalOpen = true
+    },
+    closeModal: function() {
+      this.isModalOpen = false
     }
   }
 }
 </script>
 
 <style scoped>
-.transaction-row {
-  cursor: pointer;
+.transaction-row .columns {
+  cursor: pointer !important;
 }
 </style>

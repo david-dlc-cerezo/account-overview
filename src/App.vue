@@ -42,4 +42,8 @@ button.is-primary,
 .has-text-primary {
   color: #00a7d0 !important;
 }
+
+a {
+  color: #00a7d0 !important;
+}
 </style>
