@@ -3,7 +3,7 @@
     <div class="level">
       <div class="level-left">
         <div class="level-item is-half welcome">
-          Welcome back, <span class="welcome__name">{{user.last_name}}</span>!
+          Welcome back,&nbsp;<span class="welcome__name is-primary">{{user.last_name}}</span>!
         </div>
       </div>
       <div class="level-right">
@@ -35,9 +35,6 @@ export default {
 <style scoped>
   .welcome {
     font-size: 2em;
-  }
-  .welcome__name {
-    color: #00a7d0;
   }
   .user-header {
     margin-bottom: 1em;

@@ -33,4 +33,13 @@
 #nav .navbar-menu {
   box-shadow: none;
 }
+
+button.is-primary,
+.button.is-primary {
+  background-color: #00a7d0;
+}
+
+span.is-primary {
+  color: #00a7d0;
+}
 </style>
