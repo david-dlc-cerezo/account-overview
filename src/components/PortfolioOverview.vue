@@ -1,19 +1,17 @@
 <template>
-  <section class="section portfolio-overview">
-    <div class="container">
-      <LoadingOverlay :loading="loading"></LoadingOverlay>
-      <div v-if="!loading">
-        <UseHeader :user="user"></UseHeader>
-        <UserPosition :position="userPosition" :currency="portfolio.currency"></UserPosition>
-        <PortfolioSummary :portfolio="portfolio"></PortfolioSummary>
-        <TransactionRow
-          v-for="(transaction, index)  in transactions"
-          :key="index"
-          :transaction="transaction"
-        ></TransactionRow>
-      </div>
+  <div class="portfolio-overview">
+    <LoadingOverlay :loading="loading"></LoadingOverlay>
+    <div v-if="!loading">
+      <UseHeader :user="user"></UseHeader>
+      <UserPosition :position="userPosition" :currency="portfolio.currency"></UserPosition>
+      <PortfolioSummary :portfolio="portfolio"></PortfolioSummary>
+      <TransactionRow
+        v-for="(transaction, index)  in transactions"
+        :key="index"
+        :transaction="transaction"
+      ></TransactionRow>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
